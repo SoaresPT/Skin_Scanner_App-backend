@@ -1,10 +1,10 @@
 import requests
 
 # URL of the Flask server
-url = 'http://localhost:8000/predict' # 0.0.0.0 is the default address for all IPv4 addresses on the local machine
+url = 'http://localhost:8000/predict' # or http://localhost:8000/predict if running locally
 
 # Path to the sample image
-image_path = 'C:\\Users\\soare\\Downloads\\0000.jpg'  # Update with your actual image path
+image_path = 'path/to/your/image.jpg'  # Update with your actual image path
 
 # Send a POST request with the image file
 with open(image_path, 'rb') as img_file:

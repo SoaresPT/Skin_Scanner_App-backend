@@ -1,31 +1,30 @@
-# This is a draft... Will be updated thoroughly after deployment
 # Skin Scanner App Backend
 
 This project is a Flask-based web application for image classification using an ONNX model. Given an input image, the application predicts whether the image is classified as "Malignant" or "Benign".
 
 ## Prerequisites
 
-Before you can run this application, you'll need to have the following installed on your machine:
+To run this application locally, ensure the following are installed on your machine:
 
-- Python 3.x
+- Python 3.10
 - pip
 
 ## Installation
 
-Follow these steps to set up the project:
+Follow these steps to set up the project locally:
 
 1. **Clone the Repository**
 
-   Clone the repository to your local machine:
+   Clone the repository to your machine:
 
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/SoaresPT/Skin_Scanner_App-backend.git
+   cd Skin_Scanner_App-backend
    ```
 
 2. **Create a Virtual Environment**
 
-   Setting up a virtual environment is a good practice to keep dependencies organized:
+   Set up a virtual environment to manage dependencies:
 
    ```bash
    python -m venv venv
@@ -47,90 +46,55 @@ Follow these steps to set up the project:
 
 4. **Install Required Packages**
 
-   Once the virtual environment is activated, install the required Python packages:
+   With the virtual environment activated, install the necessary Python packages:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-   If `requirements.txt` doesn't exist yet, you can create it with the following content:
+5. **ONNX Model**
 
-   ```plaintext
-   Flask
-   onnxruntime
-   scikit-image
-   ```
+   ONNX models should be placed inside `model`. Currently defaults to:  `./model/model_2.onnx`.
 
-5. **Place the ONNX Model**
+## Running the Application Locally
 
-   Make sure your ONNX model is located at `./model/model_2.onnx`.
-
-## Running the Application
-
-To start the Flask application, use the following command:
-
-```bash
-python app.py
-```
-
-This will start the server on `http://0.0.0.0:8000`.
-
-## Usage
-
-To perform an inference, send a POST request to the `/predict` endpoint with an image file:
-
-- **Endpoint:** `/predict`
-- **Method:** `POST`
-- **Form Data:** Image file with the key as `image`.
-
-### Example Request with Python
-
-You can test the API using Python's `requests` module as follows:
-
-```python
-import requests
-
-# URL of the Flask server
-url = 'http://0.0.0.0:8000/predict'
-
-# Path to the sample image
-image_path = 'path/to/your/image.jpg'
-
-# Send a POST request with the image file
-with open(image_path, 'rb') as img_file:
-    files = {'image': img_file}
-    response = requests.post(url, files=files)
-
-# Print the response from the server
-print(response.json())
-```
-
-## Error Handling
-
-The application returns error messages for the following cases:
-
-- No image file provided: Returns a 400 status code with an error message.
-- No file uploaded: Returns a 400 status code with an error message.
-- Unexpected errors: Returns a 500 status code with a detailed error message.
-
-## Running the Application
-
-Start the Flask server:
+To start the Flask application:
 
 ```bash
 python server.py
 ```
 
-Then, to test the API, run:
+The server will be accessible at `http://0.0.0.0:8000`. ( or `http://localhost:8000`)
+
+## Testing the Live Server
+
+The live server is accessible at: `https://skinscanner.420777.xyz/predict`. This will be used to send requests directly to this endpoint for predictions when using the Skin Scanner App.
+
+## Usage
+
+To perform an inference, send a POST request to the `/predict` endpoint with an image file:
+- **Endpoint:** `/predict`
+- **Method:** `POST`
+- **Form Data:** Image file with the key as `image`.
+
+### Testing with Python
+
+You can use Python's `requests` module to interact with the API. Run the `test_api.py`. 
+Change the url to 'https://skinscanner.420777.xyz/predict' for the live server.
+
+### Testing with cURL
 
 ```bash
-python test_api.py
+curl -X POST -F "image=@path/to/your/image.jpg" https://skinscanner.420777.xyz/predict # or http://0.0.0.0:8000/predict for local
 ```
 
-Ensure to update the `test_api.py` file with the correct path to your test image before executing it.
+## Error Handling
 
-## Testing with cURL
+The application returns error messages for the following scenarios:
+- No image file provided: 400 status code with an error message.
+- No file uploaded: 400 status code with an error message.
+- Unexpected errors: 500 status code with a detailed error message.
 
-```bash
-curl -X POST -F "image=@path/to/your/image.jpg" http://0.0.0.0:8000/predict
-```
+## Docker Setup (Optional)
+
+The repository includes a `Dockerfile` for containerization. You can build and run the application using Docker. However, this setup may need adjustments to suit your environment and can be ignored for initial testing. Refer to Docker documentation for building and running containers.
