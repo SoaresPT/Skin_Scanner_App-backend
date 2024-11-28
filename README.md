@@ -98,3 +98,7 @@ The application returns error messages for the following scenarios:
 ## Docker Setup (Optional)
 
 The repository includes a `Dockerfile` for containerization. You can build and run the application using Docker. However, this setup may need adjustments to suit your environment and can be ignored for initial testing. Refer to Docker documentation for building and running containers.
+
+# Skin Scanner App Repo
+
+https://github.com/siddarthsingotam/Skin_Scanner_App
