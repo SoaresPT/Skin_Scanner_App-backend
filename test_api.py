@@ -1,7 +1,7 @@
 import requests
 
 # URL of the Flask server
-url = 'http://localhost:8000/predict' # or http://localhost:8000/predict if running locally
+url = 'http://skinscanner.420777.xyz/predict' # or http://localhost:8000/predict if running locally
 
 # Path to the sample image
 image_path = 'path/to/your/image.jpg'  # Update with your actual image path
